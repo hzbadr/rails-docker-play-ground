@@ -6,8 +6,10 @@ RUN gem install rails -v '5.2.1'
 
 WORKDIR /app
 ADD Gemfile Gemfile.lock /app/
-RUN bundle install
-
+RUN bundle install --jobs 20 --retry 5
 
 COPY . .
-CMD ["rails s"]
+
+RUN rm -rf tmp/*
+
+CMD ["bundle", "exec", "rails", "s"]
