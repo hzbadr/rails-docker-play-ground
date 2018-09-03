@@ -4,6 +4,7 @@ services:
   web:
     build: .
     volumes:
+      - bundle_cache:/bundle
       - ./:/app
       - type: tmpfs
         target: /app/tmp/pidds
@@ -22,6 +23,7 @@ services:
 
 
 volumes:
+  bundle_cache:
   postgres_jokes:
 
 
